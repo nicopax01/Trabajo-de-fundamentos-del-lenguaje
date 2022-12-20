@@ -121,7 +121,7 @@
 
     {%for publicacion in post%}
     <h1>{{publicacion.title}}</h1>
-    <p class="lead">{{publicacion.content | slice:":1000" }}</p>
+    <p class="lead">{{publicacion.content | slice:":12" }}</p>
     <a class="btn btn-lg btn-primary" href="{%url 'post_detail' publicacion.id %}" role="button">Ver post &raquo;</a>
     {% endfor %}
   </div>
