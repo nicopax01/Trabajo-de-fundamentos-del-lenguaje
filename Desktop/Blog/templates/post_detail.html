@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 
 
 
@@ -92,29 +93,34 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container">
-    <h1 class="mt-5">{{ post.title }}</h1>
+    <h1 style="font-family:courier" class="mt-5">{{ post.title }}</h1>
+    <div style="margin:80px "> 
     <p class="lead">{{ post.content }} .</p>
+</div>
+
+
     <a href="/">Home</a>
   </div>
 </main>
 
 
 <div>
-
+<div style="margin: 200px; padding-right: 500px; margin-left: 90px;">
   <form method="post">
   
     {% csrf_token %}
   
-    {{ form.as_p }} 
-    <input type="submit" name="enviar" value="comentar">
+    {{ form|crispy}} 
+    <input class='btn btn-primary' type="submit" name="enviar" value="comentar">
     
   
   </form>  
-  
+</div>
   {% for comentario in comments %}
-  
-  <p>{{ comentario.name }} {{comentario.content}} </p>
-  
+
+<div style="margin: 50px;padding-right: 100px;margin-top: 20px;">
+<h4 style="font-family: courier">{{ comentario.name }}</h4> {{comentario.created_on}}<p style="front-family: courier"> {{comentario.content}} </p>
+</div>
   
   {% endfor %}
   

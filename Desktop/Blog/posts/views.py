@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,reverse
+from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
 
@@ -25,6 +26,7 @@ def post_detail(request,post_id):
             new_form = form.save(commit=False)
             new_form.post = post 
             new_form.save()
+            return HttpResponseRedirect("")
             
     else:
         form = CommentForm
