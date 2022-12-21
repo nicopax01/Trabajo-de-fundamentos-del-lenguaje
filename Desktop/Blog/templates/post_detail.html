@@ -94,9 +94,32 @@
   <div class="container">
     <h1 class="mt-5">{{ post.title }}</h1>
     <p class="lead">{{ post.content }} .</p>
-    <p>Use  <a href="/">Home</a>
+    <a href="/">Home</a>
   </div>
 </main>
+
+
+<div>
+
+  <form method="post">
+  
+    {% csrf_token %}
+  
+    {{ form.as_p }} 
+    <input type="submit" name="enviar" value="comentar">
+    
+  
+  </form>  
+  
+  {% for comentario in comments %}
+  
+  <p>{{ comentario.name }} {{comentario.content}} </p>
+  
+  
+  {% endfor %}
+  
+</div>
+  
 
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">

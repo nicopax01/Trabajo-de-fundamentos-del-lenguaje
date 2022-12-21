@@ -1,7 +1,6 @@
 from django.shortcuts import render
-
 from .models import Post
-
+from .forms import CommentForm
 
 
 
@@ -17,4 +16,19 @@ def index(request):
 def post_detail(request,post_id):
     post = Post.objects.get(id=post_id)
     
-    return render(request, 'post_detail.html', {'post':post})
+    comments = post.comments.filter(active=True)
+    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.post = post 
+            new_form.save()
+            
+    else:
+        form = CommentForm
+    
+    
+    
+    return render(request,'post_detail.html', {'post':post, 'comments':comments ,'form':form })

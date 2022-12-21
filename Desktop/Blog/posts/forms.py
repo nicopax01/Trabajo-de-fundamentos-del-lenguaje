@@ -10,8 +10,8 @@ from .models import Comment
 
 
 
-class CommentFrom(ModelForm):
+class CommentForm(ModelForm):
     class Meta:
         model= Comment
-        fields('name','email','content','activate')
+        fields = ('name','email','content','active')
     
